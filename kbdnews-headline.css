@@ -57,7 +57,7 @@ body {
     justify-content: center;
 }
 
-.head-line-box {
+.headline-box {
     background-color: #00000030;
     margin-top: 1.4vh;
     margin-bottom: 1.4vh;
@@ -69,7 +69,7 @@ body {
     align-items: center;
 }
 
-.head-line-box>textarea {
+.headline-box>textarea {
     width: 59vw;
     height: 9.5vh;
     resize: none;
