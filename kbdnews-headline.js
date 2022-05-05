@@ -9,6 +9,19 @@ export function addHeadline() {
 
     const headlineBox = document.createElement("div")
     headlineBox.setAttribute("class", "headline-box")
+    headlineBox.addEventListener("click", () => {
+        const focused = headlineBox.classList.contains("headline-box-focus")
+
+        Array.from(headlinesContainer.children).forEach((headlineContainer) => {
+            headlineContainer.firstElementChild.setAttribute("class", "headline-box")
+        })
+
+        if (focused) {
+            headlineBox.setAttribute("class", "headline-box")
+        } else {
+            headlineBox.setAttribute("class", "headline-box headline-box-focus")
+        }
+    })
 
     const textarea = document.createElement("textarea")
     textarea.setAttribute("spellcheck", "false")
