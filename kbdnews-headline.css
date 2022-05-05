@@ -47,12 +47,16 @@ body {
     width: 100%;
 }
 
+#headlines-perse-container {
+    perspective: 200vw;
+}
+
 #headlines-container {
     width: 62vw;
-    margin-left: 2vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transform: rotateY(-20deg);
 }
 
 .headline-box {
