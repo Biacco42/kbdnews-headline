@@ -38,3 +38,9 @@ window.addHeadline = addHeadline
 window.removeHeadline = removeHeadline
 window.rewind = rewind
 window.start = start
+
+window.onload = () => {
+    for (let index = 0; index < 4; index++) {
+        addHeadline()
+    }
+}
