@@ -1,0 +1,92 @@
+body {
+    background-image: linear-gradient(-70deg, #66f3de, #6b48ec);
+    width: 100vw;
+    height: 100vh;
+}
+
+#edit-button-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+#container {
+    opacity: 0%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    animation-name: fadein;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0%;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}
+
+#head-image-container {
+    margin: 5vw;
+    padding: 1vw 2vw 1vw 2vw;
+    width: 18vw;
+    height: 11vw;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+}
+
+#head-image {
+    width: 100%;
+}
+
+#headlines-container {
+    width: 62vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.head-line-box {
+    background-color: #00000030;
+    margin-top: 1.4vh;
+    margin-bottom: 1.4vh;
+    padding-top: 0.2vh;
+    padding-left: 1.5vw;
+    height: 10vh;
+    border-radius: 1.5vh;
+    display: flex;
+    align-items: center;
+}
+
+.head-line-box>textarea {
+    width: 59vw;
+    height: 9.5vh;
+    resize: none;
+    line-height: 1.5;
+    color: white;
+    font-size: 3vh;
+}
+
+.edit-button {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    color: white;
+    background-color: #00000030;
+    opacity: 0%;
+}
+
+.edit-button:hover {
+    opacity: 100%;
+}
