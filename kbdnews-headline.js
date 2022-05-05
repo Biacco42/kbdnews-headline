@@ -15,5 +15,17 @@ export function removeHeadline() {
     headlinesContainer.removeChild(lastElement)
 }
 
+export function rewind() {
+    const headImageContainer = document.getElementById("head-image-container")
+    headImageContainer.setAttribute("class", "opacity-0")
+}
+
+export function start() {
+    const headImageContainer = document.getElementById("head-image-container")
+    headImageContainer.setAttribute("class", "opacity-100")
+}
+
 window.addHeadline = addHeadline
 window.removeHeadline = removeHeadline
+window.rewind = rewind
+window.start = start
