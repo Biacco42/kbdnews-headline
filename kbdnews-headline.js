@@ -11,6 +11,7 @@ export function addHeadline() {
     headlineBox.setAttribute("class", "headline-box")
 
     const textarea = document.createElement("textarea")
+    textarea.setAttribute("spellcheck", "false")
     headlineBox.appendChild(textarea)
     headlineBox.addEventListener("keyup", () => {
         updateTextareaHeight(textarea)
