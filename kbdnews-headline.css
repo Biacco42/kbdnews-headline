@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(-70deg, #66f3de, #6b48ec);
+    background-image: linear-gradient(-70deg, #3bf1d6, #613edf);
     width: 100vw;
     height: 100vh;
 }
@@ -49,6 +49,7 @@ body {
 
 #headlines-container {
     width: 62vw;
+    margin-left: 2vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,6 +65,13 @@ body {
     border-radius: 1.5vh;
     display: flex;
     align-items: center;
+    transition: transform 300ms ease-in-out, background-color 300ms, color 300ms;
+}
+
+.headline-box:hover {
+    transform: scale(115%);
+    background-color: #ffffff30;
+    color: white;
 }
 
 .headline-box>textarea {

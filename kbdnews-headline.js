@@ -4,16 +4,22 @@ export function addHeadline() {
     const headlinesContainer = document.getElementById("headlines-container")
     const count = Array.from(headlinesContainer.children).length
 
+    const headlineContainer = document.createElement("div")
+    headlineContainer.setAttribute("class", "headline-out")
+    headlineContainer.style.transitionDelay = (3400 + 100 * count) + "ms"
+
     const headlineBox = document.createElement("div")
-    headlineBox.setAttribute("class", "headline-box headline-out")
-    headlineBox.style.transitionDelay = (3400 + 100 * count) + "ms"
+    headlineBox.setAttribute("class", "headline-box")
+
     const textarea = document.createElement("textarea")
     headlineBox.appendChild(textarea)
     headlineBox.addEventListener("keyup", () => {
         updateTextareaHeight(textarea)
     })
 
-    headlinesContainer.appendChild(headlineBox)
+    headlineContainer.appendChild(headlineBox)
+
+    headlinesContainer.appendChild(headlineContainer)
 }
 
 export function removeHeadline() {
@@ -30,11 +36,11 @@ export function rewind() {
     headlineBoxies.forEach(element => {
         const delay = element.style.transitionDelay
         element.style.transitionDelay = "0ms"
-        element.setAttribute("class", "headline-box headline-out")
+        element.setAttribute("class", "headline-out")
 
         window.setTimeout(() => {
             element.style.transitionDelay = delay
-        }, 1)
+        }, 20)
     });
 }
 
@@ -44,7 +50,7 @@ export function start() {
 
     const headlineBoxies = Array.from(document.getElementById("headlines-container").children)
     headlineBoxies.forEach((element, index) => {
-        element.setAttribute("class", "headline-box headline-in")
+        element.setAttribute("class", "headline-in")
     });
 }
 
@@ -65,5 +71,5 @@ window.onload = () => {
 
     window.setTimeout(() => {
         start()
-    }, 10)
+    }, 20)
 }
