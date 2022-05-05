@@ -76,8 +76,14 @@ body {
 }
 
 .headline-in {
-    transition: opacity 500ms, transform 500ms ease-out;
+    transition: opacity 600ms, transform 300ms ease-out;
     opacity: 100%;
+    transform: translateX(0px);
+}
+
+.headline-out {
+    opacity: 0%;
+    transform: translateX(2vw);
 }
 
 .edit-button {

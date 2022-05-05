@@ -5,7 +5,7 @@ export function addHeadline() {
     const count = Array.from(headlinesContainer.children).length
 
     const headlineBox = document.createElement("div")
-    headlineBox.setAttribute("class", "headline-box opacity-0")
+    headlineBox.setAttribute("class", "headline-box headline-out")
     headlineBox.style.transitionDelay = (3400 + 100 * count) + "ms"
     const textarea = document.createElement("textarea")
     headlineBox.appendChild(textarea)
@@ -30,7 +30,7 @@ export function rewind() {
     headlineBoxies.forEach(element => {
         const delay = element.style.transitionDelay
         element.style.transitionDelay = "0ms"
-        element.setAttribute("class", "headline-box opacity-0")
+        element.setAttribute("class", "headline-box headline-out")
 
         window.setTimeout(() => {
             element.style.transitionDelay = delay
