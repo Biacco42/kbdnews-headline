@@ -3,7 +3,11 @@
 export function addHeadline() {
     const headlineBox = document.createElement("div")
     headlineBox.setAttribute("class", "headline-box")
-    headlineBox.appendChild(document.createElement("textarea"))
+    const textarea = document.createElement("textarea")
+    headlineBox.appendChild(textarea)
+    headlineBox.addEventListener("keyup", () => {
+        updateTextareaHeight(textarea)
+    })
 
     const headlinesContainer = document.getElementById("headlines-container")
     headlinesContainer.appendChild(headlineBox)
@@ -22,7 +26,12 @@ export function rewind() {
 
 export function start() {
     const headImageContainer = document.getElementById("head-image-container")
-    headImageContainer.setAttribute("class", "opacity-100")
+    headImageContainer.setAttribute("class", "fade-in")
+}
+
+function updateTextareaHeight(textarea) {
+	let line = textarea.value.split('\n').length;
+	textarea.style.height = (4.6 * line) + "vh";
 }
 
 window.addHeadline = addHeadline
