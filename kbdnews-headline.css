@@ -31,7 +31,7 @@ body {
 }
 
 .fade-in {
-    transition: opacity 500ms 3s;
+    transition: opacity 500ms 1s;
     opacity: 100%;
 }
 

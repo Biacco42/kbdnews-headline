@@ -6,7 +6,7 @@ export function addHeadline() {
 
     const headlineContainer = document.createElement("div")
     const scaleFactor = count + 2
-    headlineContainer.style.transitionDelay = (3400 + 12 * (scaleFactor * scaleFactor)) + "ms"
+    headlineContainer.style.transitionDelay = (1400 + 12 * (scaleFactor * scaleFactor)) + "ms"
 
     const headlineBox = document.createElement("div")
     headlineBox.setAttribute("class", "headline-box")
@@ -105,5 +105,13 @@ document.addEventListener("keydown", (event) => {
                 headlineBox.setAttribute("class", "headline-box")
             })
         }
+    } else if (event.key == "a") {
+        addHeadline()
+    } else if (event.key == "d") {
+        removeHeadline()
+    } else if (event.key == "r") {
+        rewind()
+    } else if (event.key == "s") {
+        start()
     }
 })
