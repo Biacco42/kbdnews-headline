@@ -72,7 +72,7 @@ body {
     transition: transform 300ms ease-in-out, background-color 300ms, color 300ms;
 }
 
-.headline-box:hover {
+.headline-box-focus {
     transform: scale(115%);
     background-color: #ffffff30;
     color: white;

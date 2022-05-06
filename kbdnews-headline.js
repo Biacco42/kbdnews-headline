@@ -5,7 +5,8 @@ export function addHeadline() {
     const count = Array.from(headlinesContainer.children).length
 
     const headlineContainer = document.createElement("div")
-    headlineContainer.style.transitionDelay = (3400 + 100 * count) + "ms"
+    const scaleFactor = count + 2
+    headlineContainer.style.transitionDelay = (3400 + 12 * (scaleFactor * scaleFactor)) + "ms"
 
     const headlineBox = document.createElement("div")
     headlineBox.setAttribute("class", "headline-box")
