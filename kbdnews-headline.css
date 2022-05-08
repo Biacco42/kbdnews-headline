@@ -74,8 +74,7 @@ body {
 
 .headline-box-focus {
     transform: scale(115%);
-    background-color: #ffffff30;
-    color: white;
+    background-color: #ffffff8f;
 }
 
 .headline-box>textarea {
@@ -85,6 +84,10 @@ body {
     line-height: 1.5;
     color: white;
     font-size: 3vh;
+}
+
+.headline-box-focus>textarea {
+    color: #0000009f;
 }
 
 .headline-in {
