@@ -1,6 +1,12 @@
 'use strict';
 
+let edit = true
+
 export function addHeadline() {
+    if (!edit) {
+        return
+    }
+
     const headlinesContainer = document.getElementById("headlines-container")
     const count = Array.from(headlinesContainer.children).length
 
@@ -24,12 +30,18 @@ export function addHeadline() {
 }
 
 export function removeHeadline() {
+    if (!edit) {
+        return
+    }
+
     const headlinesContainer = document.getElementById("headlines-container")
     const lastElement = headlinesContainer.lastElementChild
     headlinesContainer.removeChild(lastElement)
 }
 
 export function rewind() {
+    editModeSwitch(false)
+
     const headImageContainer = document.getElementById("head-image-container")
     headImageContainer.setAttribute("class", "opacity-0")
 
@@ -44,6 +56,10 @@ export function rewind() {
             headlineContainer.style.transitionDelay = delay
         }, 20)
     });
+}
+
+export function editMode() {
+    editModeSwitch(true)
 }
 
 export function start() {
@@ -61,12 +77,26 @@ function updateTextareaHeight(textarea) {
 	textarea.style.height = (4.6 * line) + "vh";
 }
 
+function editModeSwitch(mode) {
+    edit = mode
+
+    const editModeButton = document.getElementById("edit-mode-indicator")
+    if (edit) {
+        editModeButton.style.opacity = 1
+    } else {
+        editModeButton.style.opacity = 0
+    }
+}
+
 window.addHeadline = addHeadline
 window.removeHeadline = removeHeadline
 window.rewind = rewind
+window.editMode = editMode
 window.start = start
 
 window.onload = () => {
+    editModeSwitch(true)
+
     for (let index = 0; index < 4; index++) {
         addHeadline()
     }
@@ -85,24 +115,32 @@ document.addEventListener("keydown", (event) => {
     if ("0123456789".includes(event.key)) {
         const index = parseInt(event.key) - 1
 
-        const headlineBoxies =
-            Array.from(document.getElementById("headlines-container").children)
-                .map((container) => { return container.lastElementChild })
+        const headlineContainers = Array.from(document.getElementById("headlines-container").children)
 
-        if (0 <= index && index < headlineBoxies.length) {
-            const focusTarget = headlineBoxies[index]
-            const focused = focusTarget.classList.contains("headline-box-focus")
+        if (0 <= index && index < headlineContainers.length) {
+            headlineContainers.forEach((headlineContainer, idx) => {
+                const headlineBox = headlineContainer.lastElementChild
 
-            headlineBoxies.forEach((headlineBox) => {
-                headlineBox.setAttribute("class", "headline-box")
+                if (idx == index) {
+                    if (headlineBox.classList.contains("headline-box-focus")) {
+                        headlineBox.setAttribute("class", "headline-box")
+                        window.setTimeout(() => { headlineContainer.style.zIndex = 0 }, 200)
+                    } else {
+                        window.setTimeout(() => {
+                            headlineContainer.style.zIndex = 10
+                            headlineBox.setAttribute("class", "headline-box headline-box-focus")
+                        }, 200)
+                    }
+                } else {
+                    headlineBox.setAttribute("class", "headline-box")
+                    window.setTimeout(() => { headlineContainer.style.zIndex = 0 }, 200)
+                }
             })
-
-            if (!focused) {
-                focusTarget.setAttribute("class", "headline-box headline-box-focus")
-            }
         } else {
-            headlineBoxies.forEach((headlineBox) => {
+            headlineContainers.forEach((headlineContainer) => {
+                const headlineBox = headlineContainer.lastElementChild
                 headlineBox.setAttribute("class", "headline-box")
+                window.setTimeout(() => { headlineContainer.style.zIndex = 0 }, 300)
             })
         }
     } else if (event.key == "a") {
@@ -111,6 +149,8 @@ document.addEventListener("keydown", (event) => {
         removeHeadline()
     } else if (event.key == "r") {
         rewind()
+    } else if (event.key == "e") {
+        editMode()
     } else if (event.key == "s") {
         start()
     }
