@@ -70,13 +70,13 @@ body {
     border-radius: 1.5vh;
     display: flex;
     align-items: center;
-    box-shadow: 1px 1px 4px #000000af;
+    box-shadow: 1px 1px 3px 0px #0000006f, 1px 1px 4px 0px #0000006f;
     transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
 }
 
 .headline-box-focus {
     transform: scale(115%);
-    box-shadow: 30px 30px 20px #0000006f;
+    box-shadow: 20px 30px 15px 0px #00000038, 20px 30px 45px -4px #0000004f;
 }
 
 .headline-box>textarea {
