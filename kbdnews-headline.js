@@ -2,7 +2,7 @@
 
 let edit = true
 
-export function addHeadline() {
+export function addHeadline(title) {
     if (!edit) {
         return
     }
@@ -18,6 +18,7 @@ export function addHeadline() {
     headlineBox.setAttribute("class", "headline-box")
 
     const textarea = document.createElement("textarea")
+    textarea.value = title
     textarea.setAttribute("spellcheck", "false")
     headlineBox.appendChild(textarea)
     headlineBox.addEventListener("keyup", () => {
@@ -88,6 +89,19 @@ function editModeSwitch(mode) {
     }
 }
 
+function perseQueryToSetup() {
+    const params = new URLSearchParams(window.location.search)
+
+    if (params.has("titles")) {
+        const titles = params.get("titles").split(",")
+        titles.forEach((title) => { addHeadline(title) })
+    } else {
+        for (let index = 0; index < 4; index++) {
+            addHeadline("")
+        }
+    }
+}
+
 window.addHeadline = addHeadline
 window.removeHeadline = removeHeadline
 window.rewind = rewind
@@ -96,10 +110,7 @@ window.start = start
 
 window.onload = () => {
     editModeSwitch(true)
-
-    for (let index = 0; index < 4; index++) {
-        addHeadline()
-    }
+    perseQueryToSetup()
 
     window.setTimeout(() => {
         start()
