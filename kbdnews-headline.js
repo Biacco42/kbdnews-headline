@@ -101,6 +101,14 @@ function editModeSwitch(mode) {
 }
 
 function perseQueryToSetup() {
+    const editState = edit
+    edit = true
+
+    const headlinesContainer = document.getElementById("headlines-container")
+    while (headlinesContainer.firstChild) {
+        headlinesContainer.removeChild(headlinesContainer.firstChild)
+    }
+
     const params = new URLSearchParams(window.location.search)
 
     if (params.has("titles")) {
@@ -111,6 +119,8 @@ function perseQueryToSetup() {
             addHeadline("")
         }
     }
+
+    edit = editState
 }
 
 window.addHeadline = addHeadline
@@ -122,10 +132,10 @@ window.start = start
 window.onload = () => {
     editModeSwitch(true)
     perseQueryToSetup()
+}
 
-    window.setTimeout(() => {
-        start()
-    }, 20)
+window.onpopstate = () => {
+    perseQueryToSetup()
 }
 
 document.addEventListener("keydown", (event) => {
