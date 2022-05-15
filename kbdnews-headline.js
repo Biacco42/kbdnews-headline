@@ -118,11 +118,13 @@ document.addEventListener("keydown", (event) => {
         const headlineContainers = Array.from(document.getElementById("headlines-container").children)
 
         if (0 <= index && index < headlineContainers.length) {
+            const currentFocusOn = headlineContainers[index].lastElementChild.classList.contains("headline-box-focus")
+
             headlineContainers.forEach((headlineContainer, idx) => {
                 const headlineBox = headlineContainer.lastElementChild
 
                 if (idx == index) {
-                    if (headlineBox.classList.contains("headline-box-focus")) {
+                    if (currentFocusOn) {
                         headlineBox.setAttribute("class", "headline-box")
                         window.setTimeout(() => { headlineContainer.style.zIndex = 0 }, 200)
                     } else {
@@ -132,7 +134,8 @@ document.addEventListener("keydown", (event) => {
                         }, 200)
                     }
                 } else {
-                    headlineBox.setAttribute("class", "headline-box")
+                    const defocusClass = currentFocusOn ? "headline-box" : "headline-box headline-box-nonfocus"
+                    headlineBox.setAttribute("class", defocusClass)
                     window.setTimeout(() => { headlineContainer.style.zIndex = 0 }, 200)
                 }
             })
