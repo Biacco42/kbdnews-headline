@@ -21,6 +21,7 @@ export function addHeadline(title) {
     textarea.value = title
     textarea.setAttribute("spellcheck", "false")
     headlineBox.appendChild(textarea)
+    updateTextareaHeight(textarea)
     headlineBox.addEventListener("keyup", () => {
         updateTextareaHeight(textarea)
     })
@@ -57,6 +58,16 @@ export function reset() {
             headlineContainer.style.transitionDelay = delay
         }, 20)
     });
+
+    const queryObject = {}
+    queryObject.titles = headlineContainers.map((headlineContainer) => {
+        return headlineContainer.lastElementChild.lastElementChild.value
+    }).join()
+
+    const query = new URLSearchParams(queryObject)
+    const queryString = query.toString()
+    const newURL = queryString === "" ? "/" : "?" + queryString
+    history.pushState(null, "Keyboard News Headlines", newURL)
 }
 
 export function editMode() {
@@ -158,7 +169,7 @@ document.addEventListener("keydown", (event) => {
             })
         }
     } else if (event.key == "a") {
-        addHeadline()
+        addHeadline("")
     } else if (event.key == "d") {
         removeHeadline()
     } else if (event.key == "r") {
