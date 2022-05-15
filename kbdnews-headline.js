@@ -40,7 +40,7 @@ export function removeHeadline() {
     headlinesContainer.removeChild(lastElement)
 }
 
-export function rewind() {
+export function reset() {
     editModeSwitch(false)
 
     const headImageContainer = document.getElementById("head-image-container")
@@ -104,7 +104,7 @@ function perseQueryToSetup() {
 
 window.addHeadline = addHeadline
 window.removeHeadline = removeHeadline
-window.rewind = rewind
+window.reset = reset
 window.editMode = editMode
 window.start = start
 
@@ -162,7 +162,7 @@ document.addEventListener("keydown", (event) => {
     } else if (event.key == "d") {
         removeHeadline()
     } else if (event.key == "r") {
-        rewind()
+        reset()
     } else if (event.key == "e") {
         editMode()
     } else if (event.key == "s") {
