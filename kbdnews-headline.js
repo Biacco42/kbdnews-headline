@@ -84,11 +84,11 @@ function updateTextareaHeight(textarea) {
 function editModeSwitch(mode) {
     edit = mode
 
-    const editModeButton = document.getElementById("edit-mode-indicator")
+    const editModeIndicator = document.getElementById("edit-mode-indicator")
     if (edit) {
-        editModeButton.style.opacity = 1
+        editModeIndicator.style.opacity = 1
     } else {
-        editModeButton.style.opacity = 0
+        editModeIndicator.style.opacity = 0
     }
 }
 
