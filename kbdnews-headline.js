@@ -59,15 +59,7 @@ export function reset() {
         }, 20)
     });
 
-    const queryObject = {}
-    queryObject.titles = headlineContainers.map((headlineContainer) => {
-        return headlineContainer.lastElementChild.lastElementChild.value
-    }).join()
-
-    const query = new URLSearchParams(queryObject)
-    const queryString = query.toString()
-    const newURL = queryString === "" ? "/" : "?" + queryString
-    history.pushState(null, "Keyboard News Headlines", newURL)
+    storeToQuery()
 }
 
 export function editMode() {
@@ -98,6 +90,20 @@ function editModeSwitch(mode) {
     } else {
         editModeButton.style.opacity = 0
     }
+}
+
+function storeToQuery() {
+    const headlineContainers = Array.from(document.getElementById("headlines-container").children)
+
+    const queryObject = {}
+    queryObject.titles = headlineContainers.map((headlineContainer) => {
+        return headlineContainer.lastElementChild.lastElementChild.value
+    }).join()
+
+    const query = new URLSearchParams(queryObject)
+    const queryString = query.toString()
+    const newURL = queryString === "" ? "/" : "?" + queryString
+    history.pushState(null, "Keyboard News Headlines", newURL)
 }
 
 function perseQueryToSetup() {
@@ -182,6 +188,8 @@ document.addEventListener("keydown", (event) => {
         addHeadline("")
     } else if (event.key == "d") {
         removeHeadline()
+    } else if (event.key == "w") {
+        storeToQuery()
     } else if (event.key == "r") {
         reset()
     } else if (event.key == "e") {
